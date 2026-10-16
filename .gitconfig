@@ -1,0 +1,41 @@
+[user]
+	name = Nathan Mathis
+[core]
+	autocrlf = input
+    pager = delta
+# delta diff with syntax highlighting
+[delta]
+    navigate = true  # use n and N to move between diff sections
+    dark = true      # or light = true, or omit for auto-detection
+[merge]
+    conflictStyle = zdiff3
+[interactive]
+    diffFilter = delta --color-only
+[alias]
+	branch-clean = !git fetch -p && git branch -vv | grep ': gone]' | grep -v '\\*' | awk '{ print $1 }' | xargs -r git branch -d
+	branch-name = rev-parse --abbrev-ref HEAD
+	hist = log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	histg = hist --graph
+	behind = !sh -c 'echo "git hist $(tput bold)$(git branch-name)..origin/$(git branch-name)$(tput sgr0)" && echo "" && git hist $(git branch-name)..origin/$(git branch-name)'
+	ahead = !sh -c 'echo "git hist $(tput bold)origin/$(git branch-name)..$(git branch-name)$(tput sgr0)" && echo "" && git hist origin/$(git branch-name)..$(git branch-name)'
+    chekcout = checkout
+	pul = pull
+	pll = pull
+	puhs = push
+[init]
+	defaultBranch = main
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+[credential "https://github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[include]
+	path = ~/.gitconfig.local
