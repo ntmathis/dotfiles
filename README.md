@@ -2,6 +2,8 @@
 
 My shell, tmux, git, and AI-agent setup for macOS. Symlink what you want.
 
+![Ghostty running zsh with the Powerlevel10k prompt and fastfetch](https://github.com/user-attachments/assets/aae1f8a7-a6b6-436a-82ed-69392e9b7cb0)
+
 ## Files
 
 - `.zshrc` — Up/Down history search that matches what's typed left of the cursor, a steady
