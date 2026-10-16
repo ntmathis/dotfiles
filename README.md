@@ -4,7 +4,8 @@ My shell, tmux, git, and AI-agent setup for macOS. Symlink what you want.
 
 ## Files
 
-- `.zshrc` — fish-like Up/Down history (substring search), a `git checkout` fallback between
+- `.zshrc` — Up/Down history search that matches what's typed left of the cursor, a steady
+  block cursor (even under Ghostty's shell integration), a `git checkout` fallback between
   `main` and `master`, and `tmuxa` to attach the most recent tmux session.
 - `.config/tmux/tmux.conf` — the status line shows git dirty/ahead/behind for the current pane
   plus a battery segment (`.config/tmux/battery-status.sh`, works on macOS via `pmset` and on Linux
