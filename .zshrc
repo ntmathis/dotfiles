@@ -11,7 +11,6 @@ export ZSH_CUSTOM="$ZSH/custom"
 plugins=(
   zsh-autosuggestions
   zsh-syntax-highlighting
-  history-substring-search
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -61,16 +60,19 @@ alias list_ports='lsof -nP +c 15 | grep LISTEN'
 source <(fzf --zsh)
 
 # keys & history
-# fish-style: Up/Down search history for what you've typed (substring); Right accepts the suggestion
-HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
-bindkey '^[[A' history-substring-search-up;   bindkey '^[OA' history-substring-search-up
-bindkey '^[[B' history-substring-search-down; bindkey '^[OB' history-substring-search-down
+# Up/Down search history for lines starting with the text left of the cursor.
+# Bind both normal (^[[A) and application (^[OA) arrow sequences.
+bindkey '^[[A' history-beginning-search-backward; bindkey '^[OA' history-beginning-search-backward
+bindkey '^[[B' history-beginning-search-forward;  bindkey '^[OB' history-beginning-search-forward
 
 # Force steady block cursor (overrides oh-my-zsh and Ghostty shell integration).
+# Keep zle-line-init a plain widget, not add-zle-hook-widget: Ghostty wraps a
+# plain widget and runs it last (block wins), but appends itself after
+# add-zle-hook-widget hooks (its bar cursor wins).
 _fix_cursor() { echo -ne '\e[2 q'; }
 precmd_functions+=(_fix_cursor)
-autoload -Uz add-zle-hook-widget
-add-zle-hook-widget line-init _fix_cursor
+zle-line-init() { _fix_cursor; }
+zle -N zle-line-init
 
 # git
 # Add a git checkout fallback between main and master: when the requested
