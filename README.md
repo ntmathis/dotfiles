@@ -2,9 +2,12 @@
 
 My shell, tmux, git, and AI-agent setup for macOS. Symlink what you want.
 
+![Ghostty running zsh with the Powerlevel10k prompt and fastfetch](https://github.com/user-attachments/assets/aae1f8a7-a6b6-436a-82ed-69392e9b7cb0)
+
 ## Files
 
-- `.zshrc` — fish-like Up/Down history (substring search), a `git checkout` fallback between
+- `.zshrc` — Up/Down history search that matches what's typed left of the cursor, a steady
+  block cursor (even under Ghostty's shell integration), a `git checkout` fallback between
   `main` and `master`, and `tmuxa` to attach the most recent tmux session.
 - `.config/tmux/tmux.conf` — the status line shows git dirty/ahead/behind for the current pane
   plus a battery segment (`.config/tmux/battery-status.sh`, works on macOS via `pmset` and on Linux
