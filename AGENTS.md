@@ -70,9 +70,3 @@
 - You may spawn Paseo agents. For execution, default to pi with the "DeepSeek V4.1 Flash (Low)" profile (or
   whatever is closest).
 - A bare terminal here is Ghostty, and the `ghostty` CLI is available.
-
-## Xcode app versioning (tag-driven)
-- `ci_scripts/ci_post_clone.sh` rewrites every `MARKETING_VERSION` from `CI_TAG` (`v1.3.0` → `1.3.0`). A stale
-  `MARKETING_VERSION` in `project.pbxproj` is expected: don't flag it, fix it, or block on it.
-- The tag is the shipped version. To release: update `fastlane/metadata/*/release_notes.txt`, commit, then
-  `git tag vX.Y.Z && git push origin vX.Y.Z`. `./scripts/bump-version.sh` only affects local and TestFlight builds.
